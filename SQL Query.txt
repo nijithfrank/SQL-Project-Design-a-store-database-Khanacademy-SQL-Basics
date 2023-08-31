@@ -1,0 +1,53 @@
+/*Create a database for a grocery store*/
+
+CREATE TABLE store (id NUMERIC, item TEXT, category TEXT, price INTEGER, sales INTEGER);
+
+INSERT INTO store VALUES (1, 'soda', 'drinks', 0.99, 470);
+INSERT INTO store VALUES (2, 'cereal', 'food cupboard', 5.76, 627);
+INSERT INTO store VALUES (3, 'gyoza', 'frozen', 10.45, 832);
+INSERT INTO store VALUES (4, 'potato chips', 'food cupboard', 3.99, 629);
+INSERT INTO store VALUES (5, 'apple juice', 'drinks', 2.35, 165);
+INSERT INTO store VALUES (6, 'canned tuna', 'food cupboard', 2.45, 429);
+INSERT INTO store VALUES (7, 'instant coffee', 'food cupboard', 6.78, 875);
+INSERT INTO store VALUES (8, 'ice cream', 'frozen', 23.99, 583);
+INSERT INTO store VALUES (9, 'celery', 'fruits & vegetables', 5.12, 352);
+INSERT INTO store VALUES (10, 'carrot', 'fruits & vegetables', 3.10, 487);
+INSERT INTO store VALUES (11, 'english tea', 'drinks', 5.65, 254);
+INSERT INTO store VALUES (12, 'biscuit', 'food cupboard', 8.46, 364);
+INSERT INTO store VALUES (13, 'broccoli', 'fruits & vegetables', 6.90, 146);
+INSERT INTO store VALUES (14, 'sparkling water', 'drinks', 2.99, 356);
+INSERT INTO store VALUES (15, 'burger patty', 'frozen', 11.90, 147);
+INSERT INTO store VALUES (16, 'canned soup', 'food cupboard', 7.80, 472);
+INSERT INTO store VALUES (17, 'mustard sauce', 'food cupboard', 5.95, 385);
+INSERT INTO store VALUES (18, 'stevia sweetener', 'food cupboard', 15.76, 354);
+INSERT INTO store VALUES (19, 'banana', 'fruits & vegetables', 3.24, 345);
+INSERT INTO store VALUES (20, 'chocolate brownie', 'food cupboard', 9.79, 450);
+
+--Display store database by order of sales
+SELECT * FROM store 
+ORDER BY sales asc;
+
+--Q: Which is the most expensive item?
+SELECT item, price, sales
+FROM store
+ORDER BY price desc
+LIMIT 1;
+--A: ice cream
+
+--Q: What is the average price of items in the 'food cupboard' category?
+SELECT AVG(price) 'avg food cupboard price'
+FROM store
+WHERE category ='food cupboard';
+--A: 7.42
+
+--Q: What is the total amount of items sold?
+SELECT SUM(sales) 'total sales'
+FROM store;
+-- A: 8722
+
+--Q: What are the top 5 items that bought in most sales? 
+SELECT item, category, price, sales
+FROM store
+ORDER BY sales desc
+LIMIT 5;
+--A: instant coffee, gyoza, potato chips, cereal, ice cream
